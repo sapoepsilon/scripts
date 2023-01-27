@@ -37,7 +37,7 @@ if [ $os = "1" ]; then
     if [ $? -eq 0 ]; then
         echo "Installing Powerlevel10k"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-        sed -i '' 's/robbyrussell/powerlevel10k/powerlevel10k/g' ~/.zshrc
+        sed -i '' 's#robbyrussell#powerlevel10k/powerlevel10k#g' ~/.zshrc
         echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
         echo "Installing plugins"
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -79,7 +79,7 @@ elif [ $os = "2" ]; then
     if [ $? -eq 0 ]; then
         echo "Installing Powerlevel10k"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-        sed -i -e 's/robbyrussell/powerlevel10k/powerlevel10k/g' ~/.zshrc
+        sed -i -e 's#robbyrussell#powerlevel10k/powerlevel10k#g' ~/.zshrc
         echo "Installing plugins"
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
         git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
