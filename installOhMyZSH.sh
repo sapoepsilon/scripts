@@ -22,17 +22,27 @@ if [ $os = "1" ]; then
     brew install zsh
     echo "Setting ZSH as default shell"
     chsh -s $(which zsh)
-    echo "Installing Oh My Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &
-
-    # wait for Oh My Zsh installation to complete
-    wait
+    if [ -d "$HOME/.oh-my-zsh" ]; then
+        echo "Oh My Zsh already installed"
+    else
+        echo "Installing Oh My Zsh"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &
+        wait
+        if [ $? -eq 0 ]; then
+            echo "Successfully installed Oh My Zsh"
+        else
+            echo "Error installing Oh My Zsh"
+        fi
+    fi
     if [ $? -eq 0 ]; then
         echo "Installing Powerlevel10k"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-        sed -i '' 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k/g' ~/.zshrc
+        sed -i '' 's/robbyrussell/powerlevel10k/powerlevel10k/g' ~/.zshrc
         echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
         echo "Installing plugins"
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         sed -i '' 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
         echo "Please restart your terminal for changes to take effect"
         # code for macOS
@@ -54,16 +64,26 @@ elif [ $os = "2" ]; then
     sudo apt-get install zsh
     echo "Setting ZSH as default shell"
     chsh -s $(which zsh)
-    echo "Installing Oh My Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &
-
-    # wait for Oh My Zsh installation to complete
-    wait
+    if [ -d "$HOME/.oh-my-zsh" ]; then
+        echo "Oh My Zsh already installed"
+    else
+        echo "Installing Oh My Zsh"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &
+        wait
+        if [ $? -eq 0 ]; then
+            echo "Successfully installed Oh My Zsh"
+        else
+            echo "Error installing Oh My Zsh"
+        fi
+    fi
     if [ $? -eq 0 ]; then
         echo "Installing Powerlevel10k"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-        sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k/g' ~/.zshrc ~/.zshrc
+        sed -i -e 's/robbyrussell/powerlevel10k/powerlevel10k/g' ~/.zshrc
         echo "Installing plugins"
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         sed -i -e 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
         echo "Please restart your terminal for changes to take effect"
     fi
