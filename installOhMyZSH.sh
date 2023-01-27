@@ -22,10 +22,17 @@ if [ $os = "1" ]; then
     else
         echo "Git found."
     fi
-    echo "Installing ZSH"
-    brew install zsh
-    echo "Setting ZSH as default shell"
-    chsh -s $(which zsh)
+    version=$(sw_vers -productVersion)
+
+    if [[ "$version" < "10.15" ]]; then
+        echo "macOS version is Catalina or older"
+        echo "Setting ZSH as default shell"
+        brew install zsh
+        chsh -s $(which zsh)
+    else
+        echo "macOS version is newer than Catalina"
+    fi
+
     if [ -d "$HOME/.oh-my-zsh" ]; then
         echo "Oh My Zsh already installed"
     else
@@ -53,6 +60,8 @@ if [ $os = "1" ]; then
     else
         echo "Error installing Oh My Zsh"
         exit 1
+
+        brew install raycast
     fi
 elif [ $os = "2" ]; then
 
