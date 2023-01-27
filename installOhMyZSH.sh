@@ -24,15 +24,19 @@ if [ $os = "1" ]; then
     chsh -s $(which zsh)
     echo "Installing Oh My Zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    echo "Installing Powerlevel10k"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    sed -i '' 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k/g' ~/.zshrc
-
-    echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
-    echo "Installing plugins"
-    sed -i '' 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
-    echo "Please restart your terminal for changes to take effect"
-    # code for macOS
+    if [ $? -eq 0 ]; then
+        echo "Installing Powerlevel10k"
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+        sed -i '' 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k/g' ~/.zshrc
+        echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
+        echo "Installing plugins"
+        sed -i '' 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
+        echo "Please restart your terminal for changes to take effect"
+        # code for macOS
+    else
+        echo "Error installing Oh My Zsh"
+        exit 1
+    fi
 elif [ $os = "2" ]; then
 
     # code for Debian
@@ -49,11 +53,14 @@ elif [ $os = "2" ]; then
     chsh -s $(which zsh)
     echo "Installing Oh My Zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    echo "Installing Powerlevel10k"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k/g' ~/.zshrc ~/.zshrc
-    echo "Installing plugins"
-    sed -i -e 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
-    echo "Please restart your terminal for changes to take effect"
-
+    if [ $? -eq 0 ]; then
+        echo "Installing Powerlevel10k"
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+        sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k/g' ~/.zshrc ~/.zshrc
+        echo "Installing plugins"
+        sed -i -e 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
+        echo "Please restart your terminal for changes to take effect"
+    fi
+else
+    echo "Error installing Oh My Zsh"
 fi
