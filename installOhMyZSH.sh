@@ -23,7 +23,10 @@ if [ $os = "1" ]; then
     echo "Setting ZSH as default shell"
     chsh -s $(which zsh)
     echo "Installing Oh My Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &
+
+    # wait for Oh My Zsh installation to complete
+    wait
     if [ $? -eq 0 ]; then
         echo "Installing Powerlevel10k"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -52,7 +55,10 @@ elif [ $os = "2" ]; then
     echo "Setting ZSH as default shell"
     chsh -s $(which zsh)
     echo "Installing Oh My Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &
+
+    # wait for Oh My Zsh installation to complete
+    wait
     if [ $? -eq 0 ]; then
         echo "Installing Powerlevel10k"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
