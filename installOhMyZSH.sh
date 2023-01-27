@@ -10,13 +10,17 @@ done
 
 if [ $os = "1" ]; then
     echo "You have selected macOS"
-    if ! [ -x "$(command -v git)" ]; then
-        echo "Error: git is not installed. Please install git and run the script again."
-        exit 1
+    if ! which brew >/dev/null; then
+        echo "Homebrew not found. Installing..."
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    else
+        echo "Homebrew found."
     fi
-    if ! [ -x "$(command -v brew)" ]; then
-        echo "Error: brew is not installed. Please install brew and run the script again."
-        exit 1
+    if ! which git >/dev/null; then
+        echo "Git not found. Installing..."
+        brew install git
+    else
+        echo "Git found."
     fi
     echo "Installing ZSH"
     brew install zsh
