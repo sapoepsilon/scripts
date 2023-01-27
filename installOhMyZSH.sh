@@ -61,6 +61,8 @@ if [ $os = "1" ]; then
         echo "Error installing Oh My Zsh"
         exit 1
     fi
+    brew install raycast
+
 elif [ $os = "2" ]; then
 
     # code for Debian
@@ -98,7 +100,6 @@ elif [ $os = "2" ]; then
         sed -i -e 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
         echo "Please restart your terminal for changes to take effect"
     fi
-    brew install raycast
 else
     echo "Error installing Oh My Zsh"
 fi
