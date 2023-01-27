@@ -34,7 +34,7 @@ if [ $os = "1" ]; then
   # code for macOS
 elif [ $os = "2" ]; then
 
-  # code for Ubuntu
+  # code for Debian
   echo "Checking for git..."
   if ! [ -x "$(command -v git)" ]; then
     echo "Error: git is not installed. Please install git and run the script again."
