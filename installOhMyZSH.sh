@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 
 echo "What is your OS? (Enter 1 for macOS or 2 for Ubuntu)"
 read os
