@@ -1,11 +1,15 @@
-##Introduction
-This script is designed to automatically install Oh My Zsh and replace text within a specified file. The script can be run directly without the need for manual download or configuration.
+# Installation Script for Oh My Zsh, Powerlevel10k Theme, Git, brew(for MacOS only) and Additional Plugins
 
-##Prerequisites
-curl
-sed
-##Installation
-Open a terminal and run the command:
-Copy code
+This script will install the following on your system:
+
+- Oh My Zsh: A popular open-source framework for managing your Zsh configuration
+- Powerlevel10k Theme: A highly customizable theme for Oh My Zsh
+- Git: A widely used version control system
+- Additional Oh My Zsh plugins for enhanced functionality
+- Brew for Mac users: A package manager for macOS
+
+To run the script, copy and paste the following command in your terminal:
+
+```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/sapoepsilon/scripts/main/installOhMyZSH.sh)"
-This command will download and run the script automatically.
+```
