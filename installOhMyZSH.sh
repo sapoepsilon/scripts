@@ -61,7 +61,7 @@ if [ $os = "1" ]; then
         echo "Error installing Oh My Zsh"
         exit 1
     fi
-    echo "Insatlling raycast"
+    echo "Installing raycast"
     brew install raycast
 
 elif [ $os = "2" ]; then
