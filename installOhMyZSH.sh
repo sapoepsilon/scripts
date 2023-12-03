@@ -63,6 +63,8 @@ if [ $os = "1" ]; then
     fi
     echo "Installing raycast"
     brew install raycast
+    echo "Installing iterm2"
+    brew install iterm2
 
 elif [ $os = "2" ]; then
 
