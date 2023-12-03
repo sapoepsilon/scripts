@@ -65,6 +65,7 @@ if [ $os = "1" ]; then
     brew install raycast
     echo "Installing iterm2"
     brew install iterm2
+    brew install fzf
 
 elif [ $os = "2" ]; then
 
@@ -76,6 +77,8 @@ elif [ $os = "2" ]; then
         sudo apt-get install git
         exit 1
     fi
+    echo "Install fzf"
+    sudo apt-get install fzf
     echo "Installing ZSH"
     sudo apt-get install zsh
     echo "Setting ZSH as default shell"
