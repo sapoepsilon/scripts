@@ -9,15 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux:latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
+    - name: Install git
       run: |
         pacman -Syu --noconfirm
-        pacman -S --noconfirm git zsh curl sudo
+        pacman -S --noconfirm git
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Install dependencies
+      run: |
+        pacman -S --noconfirm zsh curl sudo
+    
     - name: Run installation script
       run: |
         chmod +x ./installOhMyZSH.sh
         echo "4" | ./installOhMyZSH.sh
+    
     - name: Verify installation
       run: |
         test -d "$HOME/.oh-my-zsh" || exit 1
