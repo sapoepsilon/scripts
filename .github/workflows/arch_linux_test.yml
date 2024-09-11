@@ -1,0 +1,26 @@
+name: Arch Linux Installation Test
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        pacman -Syu --noconfirm
+        pacman -S --noconfirm git zsh curl sudo
+    - name: Run installation script
+      run: |
+        chmod +x ./installOhMyZSH.sh
+        echo "4" | ./installOhMyZSH.sh
+    - name: Verify installation
+      run: |
+        test -d "$HOME/.oh-my-zsh" || exit 1
+        grep -q "ZSH_THEME=\"powerlevel10k/powerlevel10k\"" ~/.zshrc || exit 1
+        grep -q "plugins=(git jump zsh-autosuggestions zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)" ~/.zshrc || exit 1
+        command -v fzf >/dev/null 2>&1 || exit 1
