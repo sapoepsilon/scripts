@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "What is your OS? (Enter 1 for macOS, 2 for Ubuntu, or 3 for Fedora)"
+echo "What is your OS? (Enter 1 for macOS, 2 for Ubuntu, 3 for Fedora, or 4 for Arch Linux)"
 read os
 
 while [ "$os" != "1" ] && [ "$os" != "2" ] && [ "$os" != "3" ] && [ "$os" != "4" ]; do
