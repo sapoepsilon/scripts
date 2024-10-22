@@ -93,7 +93,7 @@ if [ $os = "1" ]; then
     # Install Raycast
     echo -n "${YELLOW}Install Raycast? [Y/N]: ${NC}"
     install_raycast=$(get_immediate_input)
-    if [ "$install_raycast" != "n" ] && ["$install_gh" != "N"]; then
+    if [ "$install_raycast" != "n" ] && [ "$install_raycast" != "N" ]; then
         echo "${YELLOW}Installing Raycast...${NC}"
         brew install raycast
     else
@@ -103,7 +103,7 @@ if [ $os = "1" ]; then
     # Install iTerm2
     echo -n "${YELLOW}Install iTerm2? [Y/N]: ${NC}"
     install_iterm2=$(get_immediate_input)
-    if [ "$install_iterm2" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$install_iterm2" != "n" ] && [ "$install_iterm2" != "N" ]; then
         echo "${YELLOW}Installing iTerm2...${NC}"
         brew install --cask iterm2
     else
@@ -113,7 +113,7 @@ if [ $os = "1" ]; then
     # Install fzf
     echo -n "${YELLOW}Install fzf? [Y/N]: ${NC}"
     install_fzf=$(get_immediate_input)
-    if [ "$install_fzf" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$install_fzf" != "n" ] && [ "$install_fzf" != "N" ]; then
         echo "${YELLOW}Installing fzf...${NC}"
         brew install fzf
     else
@@ -123,7 +123,7 @@ if [ $os = "1" ]; then
     # Install VSCodium
     echo -n "${YELLOW}Install VSCodium? [Y/N]: ${NC}"
     install_vscodium=$(get_immediate_input)
-    if [ "$install_vscodium" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$install_vscodium" != "n" ] && [ "$install_vscodium" != "N" ]; then
         echo "${YELLOW}Installing VSCodium...${NC}"
         brew install --cask vscodium
     else
@@ -133,7 +133,7 @@ if [ $os = "1" ]; then
     # Install Firefox
     echo -n "${YELLOW}Install Firefox? [Y/N]: ${NC}"
     install_firefox=$(get_immediate_input)
-    if [ "$install_firefox" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$install_firefox" != "n" ] && [ "$install_firefox" != "N" ]; then
         echo "${YELLOW}Installing Firefox...${NC}"
         brew install --cask firefox
     else
@@ -143,7 +143,7 @@ if [ $os = "1" ]; then
     # Install GH
     echo -n "${YELLOW}Install GH? [Y/N]: ${NC}"
     install_gh=$(get_immediate_input)
-    if [ "$install_gh" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$install_gh" != "n" ] && [ "$install_gh" != "N" ]; then
         echo "${YELLOW}Installing GH...${NC}"
         brew install gh
     else
@@ -153,7 +153,7 @@ if [ $os = "1" ]; then
     # Install Karabiner-Elements
     echo -n "${YELLOW}Install Karabiner-Elements? [Y/N]: ${NC}"
     install_karabiner=$(get_immediate_input)
-    if [ "$install_karabiner" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$install_karabiner" != "n" ] && [ "$install_karabiner" != "N" ]; then
         echo "${YELLOW}Installing Karabiner-Elements...${NC}"
         brew install --cask karabiner-elements
     else
@@ -163,7 +163,7 @@ if [ $os = "1" ]; then
     # Install Tailscale
     echo -n "${YELLOW}Install Tailscale? [Y/N]: ${NC}"
     install_tailscale=$(get_immediate_input)
-    if [ "$install_tailscale" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$install_tailscale" != "n" ] && [ "$install_tailscale" != "N" ]; then
         echo "${YELLOW}Installing Tailscale...${NC}"
         brew install tailscale
     else
@@ -174,7 +174,7 @@ if [ $os = "1" ]; then
     echo -n "${YELLOW}Would you like to hide the macOS Dock? [Y/n]: ${NC}"
     hide_dock=$(get_immediate_input)
 
-    if [ "$hide_dock" != "n" ] && [ "$install_gh" != "N"]; then
+    if [ "$hide_dock" != "n" ] && [ "$install_gh" != "N" ]; then
         echo "${YELLOW}Hiding Dock...${NC}"
         defaults write com.apple.dock autohide -bool true; killall Dock
         echo "${GREEN}Dock is now hidden.${NC}"
