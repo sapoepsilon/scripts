@@ -170,6 +170,15 @@ if [ $os = "1" ]; then
         echo "${GREEN}Skipping Tailscale installation.${NC}"
     fi
 
+    # Install Telegram
+    echo -n "${YELLOW}Install Telegram? [Y/N]: ${NC}"
+    install_telegram=$(get_immediate_input)
+    if [ "$install_telegram" != "n" ] && [ "$install_telegram" != "N" ]; then
+        echo "${YELLOW}Installing Telegram...${NC}"
+        brew install --cask telegram
+    else
+        echo "${GREEN}Skipping Tailscale installation.${NC}"
+    fi
     # Hide Dock instead of removing it
     echo -n "${YELLOW}Would you like to hide the macOS Dock? [Y/n]: ${NC}"
     hide_dock=$(get_immediate_input)
