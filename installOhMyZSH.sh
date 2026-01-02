@@ -179,6 +179,51 @@ if [ $os = "1" ]; then
     else
         echo "${GREEN}Skipping Tailscale installation.${NC}"
     fi
+    # Install Vim
+    echo -n "${YELLOW}Install Vim? [Y/N]: ${NC}"
+    install_vim=$(get_immediate_input)
+    if [ "$install_vim" != "n" ] && [ "$install_vim" != "N" ]; then
+        echo "${YELLOW}Installing Vim...${NC}"
+        brew install vim
+    else
+        echo "${GREEN}Skipping Vim installation.${NC}"
+    fi
+
+    # Install NeoVim
+    echo -n "${YELLOW}Install NeoVim? [Y/N]: ${NC}"
+    install_neovim=$(get_immediate_input)
+    if [ "$install_neovim" != "n" ] && [ "$install_neovim" != "N" ]; then
+        echo "${YELLOW}Installing NeoVim...${NC}"
+        brew install neovim
+        echo
+        echo -n "${YELLOW}Do you have a GitHub repo with NeoVim configurations to clone? [Y/N]: ${NC}"
+        has_nvim_config=$(get_immediate_input)
+        if [ "$has_nvim_config" != "n" ] && [ "$has_nvim_config" != "N" ]; then
+            echo
+            echo -n "${YELLOW}Enter the GitHub repo URL (e.g., https://github.com/user/nvim-config): ${NC}"
+            stty icanon echo
+            read nvim_config_repo
+            if [ -n "$nvim_config_repo" ]; then
+                mkdir -p ~/.config
+                if [ -d "$HOME/.config/nvim" ]; then
+                    echo "${YELLOW}Backing up existing nvim config to ~/.config/nvim.bak${NC}"
+                    mv ~/.config/nvim ~/.config/nvim.bak
+                fi
+                echo "${YELLOW}Cloning NeoVim configuration...${NC}"
+                git clone "$nvim_config_repo" ~/.config/nvim
+                if [ $? -eq 0 ]; then
+                    echo "${GREEN}NeoVim configuration cloned successfully!${NC}"
+                else
+                    echo "${RED}Failed to clone NeoVim configuration.${NC}"
+                fi
+            fi
+        else
+            echo "${GREEN}Skipping NeoVim config clone.${NC}"
+        fi
+    else
+        echo "${GREEN}Skipping NeoVim installation.${NC}"
+    fi
+
     # Hide Dock instead of removing it
     echo -n "${YELLOW}Would you like to hide the macOS Dock? [Y/n]: ${NC}"
     hide_dock=$(get_immediate_input)
@@ -231,6 +276,52 @@ elif [ $os = "2" ]; then
         sed -i -e 's/plugins=(git)/plugins=(git jump zsh-autosuggestions sublime zsh-history-substring-search jsontools zsh-syntax-highlighting zsh-interactive-cd)/g' ~/.zshrc
         echo "Please restart your terminal for changes to take effect"
     fi
+
+    echo
+    echo "${YELLOW}Additional packages installation:${NC}"
+
+    echo -n "${YELLOW}Install Vim? [Y/N]: ${NC}"
+    read install_vim
+    if [ "$install_vim" != "n" ] && [ "$install_vim" != "N" ]; then
+        echo "${YELLOW}Installing Vim...${NC}"
+        sudo apt-get install -y vim
+    else
+        echo "${GREEN}Skipping Vim installation.${NC}"
+    fi
+
+    echo -n "${YELLOW}Install NeoVim? [Y/N]: ${NC}"
+    read install_neovim
+    if [ "$install_neovim" != "n" ] && [ "$install_neovim" != "N" ]; then
+        echo "${YELLOW}Installing NeoVim...${NC}"
+        sudo apt-get install -y neovim
+        echo
+        echo -n "${YELLOW}Do you have a GitHub repo with NeoVim configurations to clone? [Y/N]: ${NC}"
+        read has_nvim_config
+        if [ "$has_nvim_config" != "n" ] && [ "$has_nvim_config" != "N" ]; then
+            echo -n "${YELLOW}Enter the GitHub repo URL (e.g., https://github.com/user/nvim-config): ${NC}"
+            read nvim_config_repo
+            if [ -n "$nvim_config_repo" ]; then
+                mkdir -p ~/.config
+                if [ -d "$HOME/.config/nvim" ]; then
+                    echo "${YELLOW}Backing up existing nvim config to ~/.config/nvim.bak${NC}"
+                    mv ~/.config/nvim ~/.config/nvim.bak
+                fi
+                echo "${YELLOW}Cloning NeoVim configuration...${NC}"
+                git clone "$nvim_config_repo" ~/.config/nvim
+                if [ $? -eq 0 ]; then
+                    echo "${GREEN}NeoVim configuration cloned successfully!${NC}"
+                else
+                    echo "${RED}Failed to clone NeoVim configuration.${NC}"
+                fi
+            fi
+        else
+            echo "${GREEN}Skipping NeoVim config clone.${NC}"
+        fi
+    else
+        echo "${GREEN}Skipping NeoVim installation.${NC}"
+    fi
+
+    echo "${GREEN}Setup complete!${NC}"
 
 elif [ $os = "3" ]; then
 
