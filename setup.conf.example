@@ -1,0 +1,81 @@
+# setup.conf — your machine manifest.
+# Populate this, commit it to your private repo, then on a new mac:
+#   git clone <your-repo> && cd <repo> && ./setup.sh
+# ponytail: this file is sourced as bash — keep it valid bash.
+
+# Homebrew formulae (CLI / terminal tools)
+BREW_FORMULAE=(
+  git
+  gh
+  fzf
+  tmux
+  neovim
+  jj
+  tree
+  ncdu
+  uv
+  pipx
+  node
+  go
+  rust
+  awscli
+  tailscale
+  rclone
+  pandoc
+  yt-dlp
+  ollama
+)
+
+# Terminal emulators (casks)
+BREW_TERMINALS=(
+  ghostty
+  iterm2
+)
+
+# Homebrew casks (GUI apps)
+BREW_CASKS=(
+  raycast
+  karabiner-elements
+  vscodium
+  zed
+  fork
+  obsidian
+  firefox
+  zen-browser
+  brave-browser
+  telegram
+  whatsapp
+  slack
+  spotify
+  bitwarden
+  todoist
+  orbstack
+  lunar
+  neohtop
+)
+
+# Mac App Store apps (need `mas` + signed into the App Store): "id|name".
+# Find ids with: mas search <name>
+MAS_APPS=(
+)
+
+# Config repos to clone: "name|git_url|target_path".
+# Leave git_url empty ("nvim||...") and setup.sh will ask you, then save it back here.
+CONFIG_REPOS=(
+  "nvim||$HOME/.config/nvim"
+  "raycast||$HOME/.config/raycast"
+)
+
+# Your private dotfiles/repo (optional). Leave empty to be asked.
+PRIVATE_REPO=""
+PRIVATE_REPO_PATH="$HOME/dotfiles"
+
+# macOS defaults: "domain key type value". type is one of bool|int|float|string.
+MACOS_DEFAULTS=(
+  "com.apple.dock autohide bool true"
+  "com.apple.dock tilesize int 48"
+  "NSGlobalDomain KeyRepeat int 2"
+  "NSGlobalDomain InitialKeyRepeat int 15"
+  "com.apple.screencapture location string $HOME/Desktop"
+  "com.apple.finder AppleShowAllFiles bool true"
+)
